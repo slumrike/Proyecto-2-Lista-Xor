@@ -1,8 +1,11 @@
-main : main.o Funciones.o iniciar clear
-	gcc  main.c Funciones.c Funciones.h -o main
+main : funciones.o main.o 
+	gcc -o main main.o funciones.o
 
-iniciar:
+funciones.o: funciones.c funciones.h
+	gcc -c -o funciones.o funciones.c
+
+main.o: main.c funciones.h
+	gcc -c -o main.o main.c
+
+iniciar: 
 	./main
-
-clear: 
-	rm -f *.o
